@@ -53,7 +53,7 @@ def carregar_dados():
     df["sentimento"] = df["airline_sentiment"].map(mapa_sentimento)
     df["texto_limpo"] = df["text"].apply(limpar_texto)
     return df.dropna(subset=["sentimento", "texto_limpo"])
-f
+
 df = carregar_dados()
 
 # 3. Treinamento Supervisionado (TF-IDF + Naive Bayes)
