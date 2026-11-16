@@ -10,7 +10,6 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 
 st.set_page_config(page_title="Análise de Sentimentos - Mídias Sociais", layout="wide")
 
-# Carrega o estilo externo (gradiente rosa e roxo)
 def carregar_css(arquivo):
     try:
         with open(arquivo, "r", encoding="utf-8") as f:
@@ -20,22 +19,25 @@ def carregar_css(arquivo):
 
 carregar_css("app/style/style.css")
 
+# Paleta Pastel Editorial (contraste escuro para fundo claro)
+COR_TEXTO = "#2b1d2e"
+COR_GRADE = "rgba(43, 29, 46, 0.08)"
 PALETA_SENTIMENTOS = {
-    "Positivo": "#f72585",
-    "Neutro": "#9d4edd",
-    "Negativo": "#480ca8",
+    "Positivo": "#e58ab0",
+    "Neutro": "#b39ddb",
+    "Negativo": "#7c588c",
 }
-PALETA_GRAFICO = ["#f72585", "#d9048e", "#b5179e", "#7209b7", "#9d4edd", "#ff70a6"]
+PALETA_GRAFICO = ["#e58ab0", "#d4739d", "#b39ddb", "#9575cd", "#f2b5d0", "#7c588c"]
 
-# 1. Pipeline de Pré-processamento PLN (Normalização -> Tokenização -> Stopwords)
+# 1. Pipeline de Pré-processamento PLN
 STOPWORDS = set(ENGLISH_STOP_WORDS)
 
 def limpar_texto(texto):
-    texto = str(texto).lower()                              # Normalização (minúsculas)
-    texto = re.sub(r"http\S+|www\S+", "", texto)            # Remove URLs
-    texto = re.sub(r"@\w+|#\w+", "", texto)                 # Remove menções e hashtags
-    texto = re.sub(r"[^a-z\s]", "", texto)                  # Remove pontuações e números
-    tokens = texto.split()                                  # Tokenização
+    texto = str(texto).lower()
+    texto = re.sub(r"http\S+|www\S+", "", texto)
+    texto = re.sub(r"@\w+|#\w+", "", texto)
+    texto = re.sub(r"[^a-z\s]", "", texto)
+    tokens = texto.split()
     tokens_limpos = [t for t in tokens if t not in STOPWORDS and len(t) > 2]
     return " ".join(tokens_limpos)
 
@@ -146,8 +148,8 @@ with aba1:
                 height=260,
                 paper_bgcolor="rgba(0,0,0,0)",
                 plot_bgcolor="rgba(0,0,0,0)",
-                font=dict(color="#ffffff"),
-                xaxis=dict(range=[0, 100], gridcolor="rgba(255,255,255,0.1)"),
+                font=dict(color=COR_TEXTO),
+                xaxis=dict(range=[0, 100], gridcolor=COR_GRADE),
             )
             st.plotly_chart(fig_prob, use_container_width=True)
 
@@ -181,9 +183,9 @@ with aba2:
         fig_marca.update_layout(
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            font=dict(color="#ffffff"),
-            xaxis=dict(gridcolor="rgba(255,255,255,0.1)"),
-            yaxis=dict(gridcolor="rgba(255,255,255,0.1)"),
+            font=dict(color=COR_TEXTO),
+            xaxis=dict(gridcolor=COR_GRADE),
+            yaxis=dict(gridcolor=COR_GRADE),
         )
         st.plotly_chart(fig_marca, use_container_width=True)
 
@@ -209,8 +211,8 @@ with aba2:
             showlegend=False,
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            font=dict(color="#ffffff"),
-            xaxis=dict(gridcolor="rgba(255,255,255,0.1)"),
+            font=dict(color=COR_TEXTO),
+            xaxis=dict(gridcolor=COR_GRADE),
         )
         st.plotly_chart(fig_motivos, use_container_width=True)
 
@@ -228,12 +230,12 @@ with aba3:
             x=["Positivo", "Neutro", "Negativo"],
             y=["Positivo", "Neutro", "Negativo"],
             labels=dict(x="Previsto pelo Modelo", y="Real"),
-            color_continuous_scale=["#14071c", "#7209b7", "#f72585"],
+            color_continuous_scale=["#f9eff4", "#b39ddb", "#c85284"],
         )
         fig_cm.update_layout(
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            font=dict(color="#ffffff"),
+            font=dict(color=COR_TEXTO),
         )
         st.plotly_chart(fig_cm, use_container_width=True)
 
@@ -256,12 +258,12 @@ with aba3:
             x="Peso Log-Prob",
             y="Termo",
             orientation="h",
-            color_discrete_sequence=["#f72585"],
+            color_discrete_sequence=["#d4739d"],
         )
         fig_termos.update_layout(
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
-            font=dict(color="#ffffff"),
-            xaxis=dict(gridcolor="rgba(255,255,255,0.1)"),
+            font=dict(color=COR_TEXTO),
+            xaxis=dict(gridcolor=COR_GRADE),
         )
         st.plotly_chart(fig_termos, use_container_width=True)
