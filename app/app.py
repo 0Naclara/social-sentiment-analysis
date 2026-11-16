@@ -123,7 +123,7 @@ with aba1:
 
         with col_res1:
             confianca = max(probs) * 100
-            st.metric("Polaridade Prevista", predicao")
+            st.metric("Polaridade Prevista", predicao)
             st.markdown("**Etapas de Pré-processamento (PLN):**")
             st.caption(f"Texto normalizado e sem stopwords: `{texto_processado}`")
             st.caption(f"Tokens extraídos ({len(tokens_exibicao)}): `{tokens_exibicao}`")
