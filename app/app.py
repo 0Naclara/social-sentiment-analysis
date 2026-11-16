@@ -53,7 +53,7 @@ def carregar_dados():
     df["sentimento"] = df["airline_sentiment"].map(mapa_sentimento)
     df["texto_limpo"] = df["text"].apply(limpar_texto)
     return df.dropna(subset=["sentimento", "texto_limpo"])
-
+f
 df = carregar_dados()
 
 # 3. Treinamento Supervisionado (TF-IDF + Naive Bayes)
@@ -123,7 +123,7 @@ with aba1:
 
         with col_res1:
             confianca = max(probs) * 100
-           # st.metric("Polaridade Prevista", predicao, delta=f"{confianca:.1f}% de confiança")
+            st.metric("Polaridade Prevista", predicao")
             st.markdown("**Etapas de Pré-processamento (PLN):**")
             st.caption(f"Texto normalizado e sem stopwords: `{texto_processado}`")
             st.caption(f"Tokens extraídos ({len(tokens_exibicao)}): `{tokens_exibicao}`")
