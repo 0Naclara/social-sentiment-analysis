@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-creme: #fdfbfc;
+    --bg-rosa-pastel: #f9eff4;
+    --bg-lavanda-pastel: #f3effa;
+    --superficie-branca: #ffffff;
+    --borda-sutil: #eadce5;
+    --texto-principal: #2b1d2e;
+    --texto-secundario: #6e5a73;
+    --destaque-rosa: #c85284;
+    --destaque-rosa-hover: #b04170;
+    --destaque-roxo: #8465cb;
+}
+
+/* Tipografia global refinada */
+html, body, [class*="css"] {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--texto-principal);
+}
+
+/* Fundo principal em pastel suave */
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(135deg, var(--bg-creme) 0%, var(--bg-rosa-pastel) 52%, var(--bg-lavanda-pastel) 100%);
+    color: var(--texto-principal);
+}
+
+/* Cabeçalho superior limpo */
+[data-testid="stHeader"] {
+    background: transparent;
+}
+
+/* Barra lateral minimalista */
+[data-testid="stSidebar"] {
+    background-color: #fbf7fa;
+    border-right: 1px solid var(--borda-sutil);
+}
+
+[data-testid="stSidebar"] * {
+    color: var(--texto-principal);
+}
+
+/* Títulos com espaçamento editorial */
+h1, h2, h3 {
+    color: var(--texto-principal) !important;
+    letter-spacing: -0.02em;
+    font-weight: 700 !important;
+}
+
+/* Cartões de métricas (Branco puro com borda fina) */
+[data-testid="stMetric"] {
+    background-color: var(--superficie-branca);
+    border: 1px solid var(--borda-sutil);
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 12px rgba(43, 29, 46, 0.03);
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--texto-secundario) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--texto-principal) !important;
+    font-weight: 700 !important;
+}
+
+/* Botão principal sólido e discreto */
+button[kind="primary"] {
+    background-color: var(--destaque-rosa) !important;
+    border: 1px solid var(--destaque-rosa) !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    padding: 0.45rem 1.2rem !important;
+    box-shadow: 0 2px 6px rgba(200, 82, 132, 0.18) !important;
+    transition: all 0.2s ease;
+}
+
+button[kind="primary"]:hover {
+    background-color: var(--destaque-rosa-hover) !important;
+    border-color: var(--destaque-rosa-hover) !important;
+}
+
+/* Caixa de texto e seletores */
+[data-baseweb="textarea"],
+[data-baseweb="select"] > div {
+    background-color: var(--superficie-branca) !important;
+    border: 1px solid var(--borda-sutil) !important;
+    border-radius: 10px !important;
+    color: var(--texto-principal) !important;
+}
+
+textarea {
+    color: var(--texto-principal) !important;
+}
+
+/* Abas de navegação */
+button[data-baseweb="tab"] {
+    color: var(--texto-secundario) !important;
+    font-weight: 500 !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: var(--destaque-rosa) !important;
+    border-bottom-color: var(--destaque-rosa) !important;
+    font-weight: 600 !important;
+}
